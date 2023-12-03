@@ -17,6 +17,11 @@ fun List<String>.parseLineToIntList() = first().split(",").map(String::toInt)
 
 fun String.isNumeric() = this.toIntOrNull() != null
 
+fun String.replaceLast(oldValue: String, newValue: String, ignoreCase: Boolean = false): String {
+    val index = lastIndexOf(oldValue, ignoreCase = ignoreCase)
+    return if (index < 0) this else this.replaceRange(index, index + oldValue.length, newValue)
+}
+
 fun <E> executeDayPart(
     d: Day<E>,
     part: Day<E>.() -> Part<E>,
